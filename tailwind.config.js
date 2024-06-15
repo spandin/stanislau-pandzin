@@ -3,8 +3,10 @@ import { nextui } from "@nextui-org/theme"
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./screens/**/*.{js,ts,jsx,tsx,mdx}",
+    "./widgets/**/*.{js,ts,jsx,tsx,mdx}",
+    "./shared/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
 
@@ -12,7 +14,10 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
-        mono: ["var(--font-geist-mono)"],
+        mono: ["var(--font-mono)"],
+      },
+      boxShadow: {
+        primary: "0 10px 20px rgba(0, 0, 0, 0.25)",
       },
     },
   },
@@ -25,6 +30,7 @@ module.exports = {
 
       layout: {
         disabledOpacity: "0.3",
+
         radius: {
           small: "2px",
           medium: "4px",
@@ -39,9 +45,8 @@ module.exports = {
 
       themes: {
         light: {
-          layout: {},
           colors: {
-            background: "#fff",
+            background: "#f4f4f4",
             foreground: "#000 ",
             primary: {
               50: "#000",
@@ -54,17 +59,17 @@ module.exports = {
               700: "#000",
               800: "#000",
               900: "#000",
-              DEFAULT: "#000",
+              DEFAULT: "#3BF973",
               foreground: "#000",
             },
             focus: "#000",
+            divider: "#000",
           },
         },
         dark: {
-          layout: {},
           colors: {
-            background: "#000",
-            foreground: "#fff",
+            background: "#020202",
+            foreground: "#ffffff",
             primary: {
               50: "#fff",
               100: "#fff",
@@ -76,10 +81,11 @@ module.exports = {
               700: "#fff",
               800: "#fff",
               900: "#fff",
-              DEFAULT: "#fff",
-              foreground: "#fff",
+              DEFAULT: "#3BF973",
+              foreground: "#000000",
             },
             focus: "#fff",
+            divider: "#000",
           },
         },
       },
