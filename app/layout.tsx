@@ -6,8 +6,7 @@ import { Providers } from "./providers"
 
 import { siteConfig } from "@/shared/config/site"
 import { fontSans } from "@/shared/config/fonts"
-import { Navbar } from "@/widgets/navbar"
-import { ThemeSwitcher } from "@/widgets/theme-switcher"
+import { Header } from "@/widgets/header"
 
 export const metadata: Metadata = {
   title: {
@@ -15,8 +14,10 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author, url: siteConfig.links.telegram }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.svg",
   },
 }
 
@@ -37,17 +38,14 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
+          "min-h-screen min-w-screen bg-background text-base text-foreground font-sans font-light antialiased",
           fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <ThemeSwitcher />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
-            </main>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <div className="relative flex flex-col">
+            <Header />
+            <main className="max-w-screen flex-grow">{children}</main>
           </div>
         </Providers>
       </body>
