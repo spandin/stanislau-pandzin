@@ -12,7 +12,7 @@ export default function FirstScreen() {
   })
 
   return (
-    <div className="relative h-[calc(100vh-64px)] flex flex-col bg-[url('/radial_lines.svg')] bg-cover bg-right  ">
+    <div className="relative h-[calc(100dvh-64px)] flex flex-col bg-[url('/radial_lines.svg')] bg-cover bg-right  ">
       <div className="h-full m-auto p-6 inline-flex flex-col flex-shrink items-center justify-center z-10">
         <motion.h1
           ref={ref}
