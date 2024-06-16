@@ -1,4 +1,5 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import { Button, useDisclosure } from "@nextui-org/react"
 import { Heart } from "lucide-react"

@@ -1,3 +1,5 @@
+"use client"
+
 import FirstScreen from "@/screens/first-screen"
 import SecondScreen from "@/screens/second-screen"
 
