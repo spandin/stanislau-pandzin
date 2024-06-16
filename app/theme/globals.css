@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+::selection {
+    color: rgb(0, 0, 0);
+    background-color: #3BF973;
+  }
