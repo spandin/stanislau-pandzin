@@ -59,7 +59,7 @@ export default function SecondScreen() {
           }}
           words={[
             { word: "Chakra UI/Next UI" },
-            { word: "Tailwind/Framer motion", style: "text-[#f32078] " },
+            { word: "Tailwind/Framer motion", style: "text-[#f32078]" },
           ]}
         />
       </div>
