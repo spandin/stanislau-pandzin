@@ -84,7 +84,7 @@ export default function TypingText({
             </motion.span>
           ))}
           {wordIndex < words.length - 1 && (
-            <span className="inline-block">&nbsp;</span>
+            <span className="flex flex-row flex-wrap h-0">&nbsp;</span>
           )}
         </span>
       ))}

@@ -43,9 +43,9 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="min-w-screen w-full flex flex-col">
+          <div className="relation h-screen w-screen flex flex-col">
             <Header />
-            <main className="max-w-screen flex-grow">{children}</main>
+            <main className="flex-grow">{children}</main>
           </div>
         </Providers>
       </body>

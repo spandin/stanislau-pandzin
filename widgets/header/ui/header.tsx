@@ -18,7 +18,12 @@ import { siteConfig } from "@/shared/config/site"
 
 export function Header() {
   return (
-    <Navbar className="flex flex-row" maxWidth="xl" position="sticky" isBlurred>
+    <Navbar
+      className="flex flex-row z-50"
+      maxWidth="xl"
+      position="sticky"
+      isBlurred
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
