@@ -31,7 +31,7 @@ export default function FirstScreen() {
 
         <motion.h4
           ref={ref}
-          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right dark:text-[#e4e4e4] font-mono font-normal leading-[1]"
+          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right  dark:text-[#e4e4e4] font-normal leading-[1]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}
