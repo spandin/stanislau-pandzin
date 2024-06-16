@@ -4,11 +4,12 @@ import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 import WaveEmoji from "@/shared/ui/wave-emoji"
+import { LikeButton } from "@/features/like"
 
 export default function FirstScreen() {
   const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.5,
+    triggerOnce: true,
+    threshold: 0,
   })
 
   return (
@@ -30,7 +31,7 @@ export default function FirstScreen() {
 
         <motion.h4
           ref={ref}
-          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right  dark:text-[#e4e4e4] font-normal leading-[1]"
+          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right dark:text-[#e4e4e4] font-mono font-normal leading-[1]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}
@@ -38,6 +39,9 @@ export default function FirstScreen() {
           Frontend developer
         </motion.h4>
       </div>
+
+      <LikeButton />
+
       <div className="absolute inset-0 bg-bottom-fade-l dark:bg-bottom-fade-d pointer-events-none z-20" />
     </div>
   )
