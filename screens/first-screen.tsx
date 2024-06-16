@@ -40,7 +40,9 @@ export default function FirstScreen() {
         </motion.h4>
       </div>
 
-      <LikeButton />
+      <div className="relative h-48 w-full">
+        <LikeButton />
+      </div>
 
       <div className="absolute inset-0 bg-bottom-fade-l dark:bg-bottom-fade-d pointer-events-none z-20" />
     </div>

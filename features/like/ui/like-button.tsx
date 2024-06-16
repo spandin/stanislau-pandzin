@@ -75,7 +75,7 @@ export function LikeButton() {
   }, [setCount])
 
   return (
-    <div className="absolute inset-x-0 bottom-12 flex flex-col justify-center items-center gap-2 font-semibold z-30">
+    <div className="absolute inset-0 flex flex-col justify-center items-center gap-2 font-semibold z-30">
       <AnimatePresence mode="wait">
         {isLike ? (
           <motion.div
