@@ -1,30 +1,44 @@
 "use client"
 
-import React from "react"
 import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+
+import WaveEmoji from "@/shared/ui/wave-emoji"
 
 export default function FirstScreen() {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5,
+  })
+
   return (
     <div className="relative h-[calc(100vh-64px)] flex flex-col bg-[url('/radial_lines.svg')] bg-cover bg-right  ">
-      <div className="h-full m-auto inline-flex flex-col flex-shrink items-center justify-center ">
+      <div className="h-full m-auto p-6 inline-flex flex-col flex-shrink items-center justify-center z-10">
         <motion.h1
-          className="text-[96px] text-wrap font-semibold leading-[0.8]"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          ref={ref}
+          className="text-[84px] md:text-8xl text-center text-wrap font-semibold leading-[0.8]"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
           transition={{ duration: 0.4 }}
         >
-          Hi, I&apos;m <span className="text-primary">Stanislau</span>
+          <WaveEmoji
+            className="inline-block text-[84px] md:text-8xl"
+            emoji={"👋"}
+          />
+          Hi, I&apos;m <span className="text-primary">Stanislau </span>
         </motion.h1>
 
         <motion.h4
-          className="w-full text-right text-[48px] text-[#e4e4e4] font-regular leading-[0.8]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          ref={ref}
+          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right  dark:text-[#e4e4e4] font-normal leading-[1]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}
         >
           Frontend developer
         </motion.h4>
       </div>
+      <div className="absolute inset-0 bg-bottom-fade-l dark:bg-bottom-fade-d pointer-events-none z-20" />
     </div>
   )
 }
