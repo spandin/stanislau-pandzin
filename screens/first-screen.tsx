@@ -13,7 +13,7 @@ export default function FirstScreen() {
   })
 
   return (
-    <div className="relative h-[calc(100dvh-64px)] flex flex-col bg-[url('/radial_lines.svg')] bg-cover bg-right">
+    <div className="relative h-[calc(100dvh-64px)] flex flex-col justify-between bg-[url('/radial_lines.svg')] bg-cover bg-right">
       <div className="h-full m-auto p-6 inline-flex flex-col flex-shrink items-center justify-center z-10">
         <motion.h1
           ref={ref}
@@ -31,7 +31,7 @@ export default function FirstScreen() {
 
         <motion.h4
           ref={ref}
-          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right  dark:text-[#e4e4e4] font-normal leading-[1]"
+          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right dark:text-[#e4e4e4] font-normal leading-[1]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}
@@ -40,7 +40,7 @@ export default function FirstScreen() {
         </motion.h4>
       </div>
 
-      <div className="relative h-48 w-full">
+      <div className="relative bottom-24 w-full">
         <LikeButton />
       </div>
 
