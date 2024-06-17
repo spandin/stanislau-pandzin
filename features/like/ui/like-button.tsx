@@ -5,8 +5,8 @@ import { Heart } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 import useSWR from "swr"
 
-import EmailModal from "./email-modal"
-import LikeCount from "./like-count"
+import { LikeCount } from "./compose/like-count"
+import { UserModal } from "./compose/user-modal"
 
 import {
   arrayRemove,
@@ -20,7 +20,7 @@ import {
 import { useLikeStore } from "@/app/store"
 
 export function LikeButton() {
-  const email = useLikeStore((state) => state.email)
+  const name = useLikeStore((state) => state.name)
   const isLike = useLikeStore((state) => state.isLike)
   const setIsLike = useLikeStore((state) => state.setIsLike)
 
@@ -28,7 +28,7 @@ export function LikeButton() {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
 
   const handleLike = async () => {
-    if (!email) {
+    if (!name) {
       onOpen()
     }
 
@@ -37,14 +37,14 @@ export function LikeButton() {
 
     if (likeDoc.exists()) {
       const data = likeDoc.data()
-      const userAlreadyLiked = data.emails.some(
-        (entry: { email: string }) => entry.email === email,
+      const userAlreadyLiked = data.users.some(
+        (entry: { name: string }) => entry.name === name,
       )
 
-      if (!userAlreadyLiked && !!email) {
+      if (!userAlreadyLiked && !!name) {
         await updateDoc(likeDocRef, {
           likes: increment(1),
-          emails: arrayUnion({ email }),
+          users: arrayUnion({ name }),
         })
 
         setIsLike(true)
@@ -54,7 +54,7 @@ export function LikeButton() {
       if (userAlreadyLiked) {
         await updateDoc(likeDocRef, {
           likes: increment(-1),
-          emails: arrayRemove({ email }),
+          users: arrayRemove({ name }),
         })
 
         setIsLike(false)
@@ -68,10 +68,10 @@ export function LikeButton() {
       <AnimatePresence mode="wait">
         {isLike ? (
           <motion.div
-            key="heart-filled"
+            key="likes-filled"
             initial={{ opacity: 0, rotate: 90 }}
             animate={{ opacity: 1, rotate: 0 }}
-            exit={{ opacity: 0, rotate: -180 }}
+            exit={{ opacity: 0, rotate: 180 }}
             transition={{ duration: 0.4 }}
           >
             <Button
@@ -86,10 +86,10 @@ export function LikeButton() {
           </motion.div>
         ) : (
           <motion.div
-            key="heart-solid"
-            initial={{ opacity: 0, rotate: 90 }}
+            key="likes-solid"
+            initial={{ opacity: 0, rotate: -90 }}
             animate={{ opacity: 1, rotate: 0 }}
-            exit={{ opacity: 0, rotate: 180 }}
+            exit={{ opacity: 0, rotate: -180 }}
             transition={{ duration: 0.4 }}
           >
             <Button
@@ -107,7 +107,7 @@ export function LikeButton() {
 
       <LikeCount />
 
-      <EmailModal
+      <UserModal
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}
