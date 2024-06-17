@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import {
   Modal,
   Input,
@@ -13,18 +13,26 @@ import {
 
 import { useStore } from "@/app/store"
 
-interface EmailModalProps {
+interface ModalProps {
   isOpen: boolean
   onClose: () => void
   onOpenChange: (isOpen: boolean) => void
 }
 
-export function UserModal({ isOpen, onClose, onOpenChange }: EmailModalProps) {
+export function UserModal({ isOpen, onClose, onOpenChange }: ModalProps) {
+  const [value, setValue] = useState<string>("")
   const setName = useStore((state) => state.setName)
-  const [inputName, setInputName] = useState<string>("")
+
+  const isInvalid = useMemo(() => {
+    if (value.trim().length >= 2) {
+      return false
+    } else {
+      return true
+    }
+  }, [value])
 
   const handleSave = () => {
-    setName(inputName)
+    setName(value)
     onClose()
   }
 
@@ -42,13 +50,16 @@ export function UserModal({ isOpen, onClose, onOpenChange }: EmailModalProps) {
         <ModalBody>
           <Input
             isClearable
+            className="max-w text-xl"
+            variant="bordered"
             size="lg"
+            color={isInvalid ? "secondary" : "primary"}
             type="text"
-            label="Name"
             placeholder="First Name or Nickname"
-            variant="flat"
-            onChange={(e) => setInputName(e.target.value)}
-            className="max-w"
+            value={value}
+            onValueChange={setValue}
+            isInvalid={isInvalid}
+            errorMessage="Name must be more than one letter"
           />
         </ModalBody>
 
