@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { Button, useDisclosure } from "@nextui-org/react"
 import { Heart } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+import dynamic from "next/dynamic"
 
 import EmailModal from "./email-modal"
 
@@ -17,6 +18,8 @@ import {
   updateDoc,
 } from "@/shared/config/firebase"
 import { useLikeStore } from "@/app/store"
+
+const LikeCount = dynamic(() => import("./like-count"), { ssr: false })
 
 export function LikeButton() {
   const [count, setCount] = useState(0)
@@ -127,7 +130,9 @@ export function LikeButton() {
             transition={{ duration: 0.4 }}
             className="text-xl"
           >
-            {count}
+            <Suspense fallback={<span>{count}</span>}>
+              <LikeCount />
+            </Suspense>
           </motion.span>
         </AnimatePresence>
 
