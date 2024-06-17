@@ -19,14 +19,14 @@ import {
   increment,
   updateDoc,
 } from "@/shared/config/firebase"
-import { useLikeStore } from "@/app/store"
+import { useStore } from "@/app/store"
 
 export function LikeButton() {
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const name = useLikeStore((state) => state.name)
-  const isLike = useLikeStore((state) => state.isLike)
-  const setIsLike = useLikeStore((state) => state.setIsLike)
+  const name = useStore((state) => state.name)
+  const isLike = useStore((state) => state.isLike)
+  const setIsLike = useStore((state) => state.setIsLike)
 
   const { mutate } = useSWR("likes")
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
@@ -47,7 +47,7 @@ export function LikeButton() {
   }
 
   const handleLike = async () => {
-    if (!name) {
+    if (name === "Guest") {
       onOpen()
     }
 
@@ -60,7 +60,7 @@ export function LikeButton() {
         (entry: { name: string }) => entry.name === name,
       )
 
-      if (!userAlreadyLiked && !!name) {
+      if (!userAlreadyLiked && !!name && name !== "Guest") {
         await updateDoc(likeDocRef, {
           likes: increment(1),
           users: arrayUnion({ name }),
@@ -68,6 +68,7 @@ export function LikeButton() {
 
         setIsLike(true)
         mutate((prev: number) => prev + 1)
+        handleConfetti()
       }
 
       if (userAlreadyLiked) {
@@ -119,7 +120,6 @@ export function LikeButton() {
               color="danger"
               aria-label="Like"
               onClick={handleLike}
-              onPress={handleConfetti}
             >
               <Heart fill={"transparent"} color="white" />
             </Button>

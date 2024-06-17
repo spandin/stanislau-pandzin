@@ -11,7 +11,7 @@ import {
   ModalContent,
 } from "@nextui-org/react"
 
-import { useLikeStore } from "@/app/store"
+import { useStore } from "@/app/store"
 
 interface EmailModalProps {
   isOpen: boolean
@@ -20,7 +20,7 @@ interface EmailModalProps {
 }
 
 export function UserModal({ isOpen, onClose, onOpenChange }: EmailModalProps) {
-  const setName = useLikeStore((state) => state.setName)
+  const setName = useStore((state) => state.setName)
   const [inputName, setInputName] = useState<string>("")
 
   const handleSave = () => {
