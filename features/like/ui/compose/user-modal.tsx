@@ -29,7 +29,12 @@ export function UserModal({ isOpen, onClose, onOpenChange }: EmailModalProps) {
   }
 
   return (
-    <Modal placement="bottom" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal
+      backdrop="blur"
+      placement="bottom"
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+    >
       <ModalContent className="pt-4">
         <ModalHeader className="flex flex-col gap-1">
           Enter your name
