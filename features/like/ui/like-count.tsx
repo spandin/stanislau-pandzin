@@ -1,11 +1,16 @@
-import { db, doc, getDoc } from "@/shared/config/firebase"
+"use client"
 
-export const revalidate = 60
+import useSWR from "swr"
+import { Spinner } from "@nextui-org/react"
 
-export default async function LikeCount() {
-  const likeDocRef = doc(db, "likes", "likeData")
-  const likeDoc = await getDoc(likeDocRef)
-  const count = likeDoc.exists() ? likeDoc.data().likes : 0
+import { getAllLikes } from "../api"
 
-  return <span className="text-xl">{count}</span>
+export default function LikeCount() {
+  const { data: likes, isLoading } = useSWR("likes", getAllLikes)
+
+  return (
+    <div className="flex flex-col justify-center items-center gap-2 text-xl font-semibold font-mono z-30">
+      {isLoading ? <Spinner color="danger" /> : <span>{likes} Likes</span>}
+    </div>
+  )
 }
