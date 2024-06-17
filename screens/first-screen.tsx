@@ -5,8 +5,10 @@ import { useInView } from "react-intersection-observer"
 
 import WaveEmoji from "@/shared/ui/wave-emoji"
 import { LikeButton } from "@/features/like"
+import { useStore } from "@/app/store"
 
 export default function FirstScreen() {
+  const name = useStore((state) => state.name)
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -22,16 +24,21 @@ export default function FirstScreen() {
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
           transition={{ duration: 0.4 }}
         >
-          <WaveEmoji
-            className="inline-block text-[84px] md:text-8xl"
-            emoji={"👋"}
-          />
-          Hi, I&apos;m <span className="text-primary">Stanislau </span>
+          <div className="flex flex-col md:flex-row items-center gap-2">
+            <WaveEmoji
+              className="inline-block text-7xl md:text-7xl leading-[0.8]"
+              emoji={"👋"}
+            />
+            <div>
+              <span>Hi{` ${name}`}, </span>
+              <span className="text-primary">I&apos;m Stanislau</span>
+            </div>
+          </div>
         </motion.h1>
 
         <motion.h4
           ref={ref}
-          className="inline w-full px-1 text-3xl md:text-4xl text-center xl:text-right dark:text-[#e4e4e4] font-normal leading-[1]"
+          className="inline w-full px-1 text-3xl md:text-4xl text-right dark:text-[#e4e4e4] font-normal leading-[1]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}
