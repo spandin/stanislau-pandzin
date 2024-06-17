@@ -1,9 +1,11 @@
 "use client"
 
+import useSWR from "swr"
+import { useRef } from "react"
 import { Button, useDisclosure } from "@nextui-org/react"
 import { Heart } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
-import useSWR from "swr"
+import confetti from "canvas-confetti"
 
 import { LikeCount } from "./compose/like-count"
 import { UserModal } from "./compose/user-modal"
@@ -20,12 +22,29 @@ import {
 import { useLikeStore } from "@/app/store"
 
 export function LikeButton() {
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
   const name = useLikeStore((state) => state.name)
   const isLike = useLikeStore((state) => state.isLike)
   const setIsLike = useLikeStore((state) => state.setIsLike)
 
   const { mutate } = useSWR("likes")
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
+
+  const handleConfetti = () => {
+    if (buttonRef.current) {
+      const { left, top, width, height } =
+        buttonRef.current.getBoundingClientRect()
+      const x = left + width / 2
+      const y = top + height / 2
+
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+      })
+    }
+  }
 
   const handleLike = async () => {
     if (!name) {
@@ -75,7 +94,7 @@ export function LikeButton() {
             transition={{ duration: 0.4 }}
           >
             <Button
-              className="rounded-full"
+              className="rounded-full "
               isIconOnly
               color="danger"
               aria-label="Like"
@@ -93,11 +112,14 @@ export function LikeButton() {
             transition={{ duration: 0.4 }}
           >
             <Button
+              ref={buttonRef}
               className="rounded-full"
               isIconOnly
+              disableRipple
               color="danger"
               aria-label="Like"
               onClick={handleLike}
+              onPress={handleConfetti}
             >
               <Heart fill={"transparent"} color="white" />
             </Button>
