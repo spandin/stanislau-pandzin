@@ -57,6 +57,7 @@ module.exports = {
               foreground: "black",
             },
             focus: "#3BF973",
+            danger: "#f32078",
             divider: "black",
           },
         },
