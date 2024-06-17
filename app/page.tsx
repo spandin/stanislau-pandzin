@@ -1,4 +1,4 @@
-"use client"
+export const revalidate = 60
 
 import FirstScreen from "@/screens/first-screen"
 import SecondScreen from "@/screens/second-screen"
