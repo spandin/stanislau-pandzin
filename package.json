@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
     "autoprefixer": "10.4.19",
+    "canvas-confetti": "^1.9.3",
     "clsx": "2.1.1",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.2.1",
@@ -59,5 +60,8 @@
     "three": "^0.165.0",
     "typescript": "5.0.4",
     "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4"
   }
 }
