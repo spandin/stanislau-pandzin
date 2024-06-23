@@ -21,52 +21,63 @@ interface ModalProps {
 
 export function UserModal({ isOpen, onClose, onOpenChange }: ModalProps) {
   const [value, setValue] = useState<string>("")
+  const [isTouched, setIsTouched] = useState<boolean>(false)
   const setName = useStore((state) => state.setName)
 
   const isInvalid = useMemo(() => {
-    if (value.trim().length >= 2) {
-      return false
-    } else {
-      return true
-    }
+    return value.trim().length <= 1 || /^\d/.test(value.trim())
   }, [value])
 
   const handleSave = () => {
-    setName(value)
-    onClose()
+    setIsTouched(true)
+
+    if (!isInvalid) {
+      setName(value)
+      onClose()
+    }
   }
 
   return (
     <Modal
       backdrop="blur"
-      placement="bottom"
+      placement="bottom-center"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
     >
       <ModalContent className="pt-4">
         <ModalHeader className="flex flex-col gap-1">
-          Enter your name
+          Enter your nickname
         </ModalHeader>
         <ModalBody>
           <Input
-            isClearable
-            className="max-w text-xl"
+            classNames={{
+              inputWrapper: ["!cursor-text"],
+              errorMessage: ["text-danger", "text-sm", "font-semibold"],
+            }}
+            type="text"
+            placeholder="Your nickname"
             variant="bordered"
             size="lg"
-            color={isInvalid ? "secondary" : "primary"}
-            type="text"
-            placeholder="First Name or Nickname"
+            color={isInvalid && isTouched ? "danger" : "primary"}
+            isClearable
+            isInvalid={isInvalid && isTouched}
             value={value}
-            onValueChange={setValue}
-            isInvalid={isInvalid}
-            errorMessage="Name must be more than one letter"
+            onValueChange={(value) => {
+              setValue(value)
+              setIsTouched(false)
+            }}
+            errorMessage={
+              isInvalid && isTouched
+                ? "Nickname must be more than one letter and cannot start with a digit"
+                : ""
+            }
           />
         </ModalBody>
 
         <ModalFooter>
           <Button
             className="font-bold"
-            variant="light"
+            variant="bordered"
             color="primary"
             radius="full"
             onPress={handleSave}

@@ -29,7 +29,7 @@ export default function ThemeSwitch() {
             transition={{ duration: 0.4 }}
             className="rounded-full bg-primary p-2 transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/60"
           >
-            <Sun size={24} color="black" />
+            <Sun size={24} color="white" />
           </motion.div>
         ) : (
           <motion.div

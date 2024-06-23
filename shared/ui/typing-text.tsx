@@ -27,7 +27,7 @@ export default function TypingText({
   containerAnimation,
 }: TypingTextProps) {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0,
   })
 

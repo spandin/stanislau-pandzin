@@ -10,16 +10,16 @@ import { useStore } from "@/app/store"
 export default function FirstScreen() {
   const name = useStore((state) => state.name)
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0,
   })
 
   return (
     <div className="relative h-[calc(100dvh-64px)] flex flex-col justify-between bg-[url('/radial_lines.svg')] bg-cover bg-right">
-      <div className="h-full m-auto p-6 inline-flex flex-col flex-shrink items-center justify-center z-10">
+      <div className="h-full m-auto p-6 inline-flex flex-col flex-shrink items-center justify-center z-30 ">
         <motion.h1
           ref={ref}
-          className="text-[84px] md:text-8xl text-center text-wrap font-semibold leading-[0.8]"
+          className="text-[84px] md:text-8xl text-center text-wrap font-semibold leading-[0.8] "
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -50 }}
           transition={{ duration: 0.4 }}
@@ -38,7 +38,7 @@ export default function FirstScreen() {
 
         <motion.h4
           ref={ref}
-          className="inline w-full px-1 text-3xl md:text-4xl text-right dark:text-[#e4e4e4] font-normal leading-[1]"
+          className="inline w-full px-1 text-3xl md:text-4xl text-right text-black dark:text-[#e4e4e4] font-medium leading-[1]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
           transition={{ duration: 0.4 }}

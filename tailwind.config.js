@@ -1,4 +1,5 @@
 import { nextui } from "@nextui-org/theme"
+import { error } from "console"
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
       },
       backgroundImage: {
         "bottom-fade-d": "linear-gradient(to top, #020202, transparent 50%)",
-        "bottom-fade-l": "linear-gradient(to top, #f4f4f4, transparent 50%)",
+        "bottom-fade-l": "linear-gradient(to top, #f4f4f4, transparent 90%)",
       },
     },
   },
@@ -53,11 +54,10 @@ module.exports = {
             background: "#f4f4f4",
             foreground: "black",
             primary: {
-              DEFAULT: "#3BF973",
+              DEFAULT: "#327445",
               foreground: "black",
             },
             focus: "#3BF973",
-            danger: "#f32078",
             divider: "black",
           },
         },
@@ -70,7 +70,6 @@ module.exports = {
               foreground: "black",
             },
             focus: "#3BF973",
-            danger: "#f32078",
             divider: "black",
           },
         },

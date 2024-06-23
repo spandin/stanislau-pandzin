@@ -22,18 +22,13 @@ export default function CardOfMe() {
             <h4 className="text-lg font-semibold leading-none">
               {siteConfig.name}
             </h4>
-            <h5 className="text-small tracking-tight text-default-500">
-              <Link href={siteConfig.links.telegram} target="_blank">
-                @s_pandin
-              </Link>
-            </h5>
           </div>
         </div>
       </CardHeader>
 
       <CardBody className="px-3 py-1">
-        <p className="text-small pl-px text-default-500">
-          {siteConfig.description} with 2 years of experience
+        <p className="text-sm pl-px text-default-500">
+          {siteConfig.description} with 2+ years of experience
           <span aria-label="confetti" role="img">
             🎉
           </span>
@@ -41,14 +36,20 @@ export default function CardOfMe() {
       </CardBody>
 
       <CardFooter>
-        <Button
-          className="w-full font-bold"
-          variant="shadow"
-          color="primary"
-          radius="full"
+        <Link
+          className="w-full"
+          href={siteConfig.links.telegram}
+          target="_blank"
         >
-          Write me
-        </Button>
+          <Button
+            className="w-full font-bold"
+            variant="bordered"
+            color="primary"
+            radius="full"
+          >
+            Write me
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   )

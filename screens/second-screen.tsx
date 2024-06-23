@@ -15,14 +15,14 @@ export default function SecondScreen() {
             },
           }}
           words={[
-            { word: "I have", style: "white" },
-            { word: "experience", style: "text-primary" },
-            { word: "with:", style: "text-yellow-500" },
+            { word: "I have" },
+            { word: "experience" },
+            { word: "with:", style: "text-primary" },
           ]}
         />
 
         <TypingText
-          className="self-end text-6xl font-semibold leading-[1]"
+          className="self-end text-6xl text-right font-semibold leading-[0.6]"
           containerAnimation={{
             hidden: {
               x: 50,
@@ -31,11 +31,17 @@ export default function SecondScreen() {
               x: { inView: -20, defaultValue: 0 },
             },
           }}
-          words={[{ word: "React/Next.js" }]}
+          words={[
+            { word: "React | Next.js" },
+            {
+              word: "and I also use Nest.js",
+              style: "text-yellow-500 text-2xl",
+            },
+          ]}
         />
 
         <TypingText
-          className="self-start text-5xl font-semibold leading-[1]"
+          className="self-start text-5xl font-semibold leading-[0.6]"
           containerAnimation={{
             hidden: {
               x: -50,
@@ -44,11 +50,17 @@ export default function SecondScreen() {
               x: { inView: 20, defaultValue: 0 },
             },
           }}
-          words={[{ word: "Redux/Zustand" }]}
+          words={[
+            { word: "Redux | Zustand" },
+            {
+              word: "for caching React Query | SWR",
+              style: "text-indigo-500 text-2xl",
+            },
+          ]}
         />
 
         <TypingText
-          className="self-end text-3xl text-wrap text-right font-semibold leading-[1]"
+          className="self-end text-3xl text-wrap text-right font-semibold leading-[0.8]"
           containerAnimation={{
             hidden: {
               x: 20,
@@ -58,8 +70,11 @@ export default function SecondScreen() {
             },
           }}
           words={[
-            { word: "Chakra UI/Next UI" },
-            { word: "Tailwind/Framer motion", style: "text-[#f32078]" },
+            { word: "MUI | Chakra UI | Next UI | Tailwind" },
+            {
+              word: "for animation Framer motion",
+              style: "text-danger text-xl",
+            },
           ]}
         />
       </div>
