@@ -28,7 +28,7 @@ export default function CardOfMe() {
 
       <CardBody className="px-3 py-1">
         <p className="text-sm pl-px text-default-500">
-          {siteConfig.description} with 2+ years of experience
+          {siteConfig.description} with 3+ years of experience
           <span aria-label="confetti" role="img">
             🎉
           </span>
